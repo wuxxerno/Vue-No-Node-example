@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Game of dices</title>
+    <meta name="description" content="Funny game">
+    <meta name="author" content="Robin-iths">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+    <header   class="header">
+        <div   id="title">
+            <h1>DiceGame</h1>
+        </div>
+    </header>
+    <main>
+        <section class="content">
+            <div id="game">
+                <div id="colWrapper">
+                    <div id="table2">
+                        <div id="playtable"  >
+                            <div id="dicemark0"></div>
+                            <div class="dicemarks" id="dicemark1" v-on:click="unlock(dices[0].id,false)"><img v-if="dices[0].visible&&dices[0].rollable" v-bind:src="dices[0].url" v-bind:class="[isActive ? 'ani' : 'aniAlt']"  /></div>
+                            <div class="dicemarks" id="dicemark2" v-on:click="unlock(dices[1].id,false)"><img v-if="dices[1].visible&&dices[1].rollable" v-bind:src="dices[1].url" v-bind:class="[isActive ? 'aniAlt' : 'ani']" /></div>
+                            <div class="dicemarks" id="dicemark3" v-on:click="unlock(dices[2].id,false)"><img v-if="dices[2].visible&&dices[2].rollable" v-bind:src="dices[2].url" v-bind:class="[isActive ? 'ani' : 'aniAlt']" /></div>
+                            <div class="dicemarks" id="dicemark4" v-on:click="unlock(dices[3].id,false)"><img v-if="dices[3].visible&&dices[3].rollable" v-bind:src="dices[3].url" v-bind:class="[isActive ? 'aniAlt' : 'ani']" /></div>
+                            <div class="dicemarks" id="dicemark5" v-on:click="unlock(dices[4].id,false)"><img v-if="dices[4].visible&&dices[4].rollable" v-bind:src="dices[4].url" v-bind:class="[isActive ? 'ani' : 'aniAlt']" /></div>
+                        </div>
+                        <div id="card">
+                            <scorebtn v-on:mouseout.native="hover(table.id)" 
+							v-on:mouseover.native="hover(table.id)" 
+							v-on:click.native="click(table.id)" 
+							v-for='table, index in table' 
+							v-bind:condition='table.condition' 
+							v-bind:score='table.score' 
+							v-bind:key='index' 
+							v-bind:style="table.css"> </scorebtn>
+                        </div>
+                    </div>
+                    <div id="dices"  >
+						 <hand v-for='dices, index in dices' 
+						 v-on:click.native="unlock(dices.id)" 
+						 v-bind:key='index'	
+						 v-bind:url='dices.url' 
+						 v-bind:rollable='dices.rollable'> </hand>
+                        <div id="dice6">
+                            <input type="button" v-on:click="roll" class="button" value="Roll">
+                        </div>
+                    </div>
+                </div>
+                <div id="score"></div>
+            </div>
+        </section>
+        <aside class="sidebar">
+        </aside>
+        <aside class="sidebar2">
+        </aside>
+    </main>
+    <footer   class="footer">
+        <p>©2019 <a   href="https://github.com/wuxxerno">Source code and other cool projects</a></p>
+    </footer>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
